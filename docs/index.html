@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdict CLI — deterministic trust scoring for AI agents</title>
+<style>
+:root{--bg:#0b1622;--fg:#dfeaf2;--mut:#8fa9bc;--acc:#7ef0c1;--card:#101e2e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+h1{font-size:2rem;margin:0 0 .2rem}h2{margin-top:2.2rem;color:var(--acc);font-size:1.2rem}
+.sub{color:var(--mut);font-size:1.05rem;margin-bottom:1.6rem}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;
+padding:18px 20px;margin:1rem 0}
+pre{background:#060d16;border:1px solid rgba(255,255,255,.08);border-radius:10px;
+padding:14px 16px;overflow-x:auto;font-size:.85rem;color:#cfe3f5}
+code{color:var(--acc)}a{color:var(--acc)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6rem 0}
+th,td{border:1px solid rgba(255,255,255,.12);padding:8px 10px;text-align:left}
+th{color:var(--acc)}.fine{color:var(--mut);font-size:.85rem}
+.badge{display:inline-block;background:#123;color:var(--acc);border:1px solid var(--acc);
+border-radius:20px;padding:2px 12px;font-size:.8rem;margin-right:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p><span class="badge">v1.0.0</span><span class="badge">stdlib only</span><span class="badge">$0</span></p>
+<h1>Verdict CLI</h1>
+<p class="sub">Deterministic, evidence-bound trust scoring for AI agents — the CWI Verdict Engine v1.0.0 as runnable software. A verdict with receipts, or an honest <em>insufficient-data</em>. It never invents a score.</p>
+
+<div class="card">
+<h2 style="margin-top:0">What it does</h2>
+<p>You hand it evidence JSON — ERC-8004 identity signals, Needle Drop verified history, First Spin published verdicts — and it returns a verdict: a score (0–1) with a published band and a full evidence trace, or a refusal when the evidence isn't there.</p>
+<ul>
+<li><strong>Admission:</strong> only <code>verified</code> evidence counts. <code>claimed</code>/<code>pending</code>/<code>refuted</code> count zero. Any <code>disputed</code> item refuses the whole run.</li>
+<li><strong>Sybil damping:</strong> issuer caps, identity clustering, self-assertion discount — applied openly, all damped items stay visible.</li>
+<li><strong>Determinism:</strong> no clock, no randomness, no network. Same input → byte-identical output, bound by <code>input_sha256</code>.</li>
+<li><strong>Provenance:</strong> scored verdicts are <code>unanchored</code> unless your input pins evidence with an <code>anchor_ref</code>.</li>
+</ul>
+</div>
+
+<h2>Quickstart</h2>
+<pre>git clone https://github.com/CumulativeWebInc/cwi-verdict-cli.git
+cd cwi-verdict-cli
+python3 -m verdict_cli example &gt; evidence.json
+python3 -m verdict_cli score evidence.json --out ./run-001
+# run-001/report.json  (canonical engine output)
+# run-001/report.md    (why the verdict is what it is)</pre>
+
+<h2>Commands</h2>
+<table>
+<tr><th>command</th><th>what it does</th></tr>
+<tr><td><code>score input.json [--out DIR]</code></td><td>Score evidence; write report.json + report.md</td></tr>
+<tr><td><code>check input.json</code></td><td>One-line verdict for pipelines</td></tr>
+<tr><td><code>example [--kind insufficient|disputed]</code></td><td>Print a valid input template</td></tr>
+<tr><td><code>spec</code></td><td>Print the published scoring rules</td></tr>
+<tr><td><code>pin</code></td><td>Show the vendored engine provenance (audit me)</td></tr>
+</table>
+
+<h2>Score bands</h2>
+<table>
+<tr><th>score</th><th>band</th><th>meaning</th></tr>
+<tr><td>0.800 – 1.000</td><td>established</td><td>Deep, multi-family verified evidence</td></tr>
+<tr><td>0.600 – 0.799</td><td>emerging</td><td>Solid evidence, still building</td></tr>
+<tr><td>0.400 – 0.599</td><td>thin</td><td>Real evidence, but sparse</td></tr>
+<tr><td>0.200 – 0.399</td><td>weak</td><td>Minimal verified signal</td></tr>
+<tr><td>0.000 – 0.199</td><td>negligible</td><td>Barely above cold start</td></tr>
+</table>
+
+<h2>Honesty</h2>
+<ul>
+<li><strong>This tool scores evidence; it does not create trust.</strong> Garbage evidence in, garbage score out.</li>
+<li><strong><code>insufficient-data</code> is the correct answer for new subjects</strong> — not a failure.</li>
+<li><strong>No "scored" demo exists on purpose.</strong> A scored example would need fabricated evidence.</li>
+<li><strong>No telemetry, no network, no accounts.</strong> Your evidence never leaves your machine.</li>
+</ul>
+
+<h2>The engine is vendored, not rewritten</h2>
+<p class="fine"><code>verdict_cli/_engine.py</code> is the canonical CWI Verdict Engine copied verbatim from <code>CumulativeWebInc/cwi-learn</code> (branch <code>needs/verdict-engine</code>, blob <code>e34b722e…29953</code>, pinned 2026-09-17). Weights, thresholds, and gates are spec-versioned — never edited. The test suite asserts the vendored file's sha256.</p>
+
+<p class="fine">Built by <a href="https://cumulativeweb.com">Cumulative Web Inc</a>. Real software, never a simulation. 40/40 tests passing. Proprietary — all rights reserved.</p>
+</div>
+</body>
+</html>

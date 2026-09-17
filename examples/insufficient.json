@@ -1,0 +1,32 @@
+{
+  "engine_version": "1.0.0",
+  "subject": {
+    "agent_id": "MUSE_CWI",
+    "display_name": "KingCode (CWI chief agent)"
+  },
+  "context": "agent-trust",
+  "observed_at": "2026-09-17T00:00:00Z",
+  "signals": {
+    "erc8004": [
+      {
+        "evidence_id": "e8004-moltbook-claim-20260915",
+        "kind": "protocol-registration-claim",
+        "issuer": "moltbook",
+        "identity_cluster": null,
+        "issuer_type": "third_party",
+        "description": "MUSE_CWI (KingCode) Moltbook account claimed — email verified.",
+        "status": "verified",
+        "observed_at": "2026-09-15",
+        "source_url": null,
+        "source_ref": "CWI agent watchlist + Moltbook heartbeat logs, 2026-09-15",
+        "weight_class": 2
+      }
+    ],
+    "needle_drop": [],
+    "first_spin": []
+  },
+  "evidence_notes": {
+    "needle_drop": "Ledger verified empty as of 2026-09-17 (ships empty by design).",
+    "first_spin": "No published First Spin verdicts on file; worked examples excluded per spec."
+  }
+}
