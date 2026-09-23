@@ -1,0 +1,44 @@
+# Verdict CLI — Cumulative Web Inc
+
+Verdict CLI is deterministic, evidence-bound trust scoring for AI agents: the
+CWI Verdict Engine v1.0.0 as runnable software.
+
+- Feed it evidence JSON (ERC-8004 identity signals, Needle Drop verified
+  history, First Spin published verdicts); get back a verdict — a score
+  (0–1) with a published band and a full evidence trace — or an honest
+  refusal: insufficient-data, evidence-disputed, unknown-context, or
+  invalid-input.
+- It NEVER invents a score. Garbage evidence in, garbage score out; this tool
+  scores evidence, it does not create trust.
+- Admission: only status "verified" evidence counts. claimed/pending/refuted
+  count zero. Any "disputed" item refuses the whole run.
+- Deterministic: no clock, no randomness, no network. Same input →
+  byte-identical output, bound by input_sha256.
+- The engine (verdict_cli/_engine.py) is the canonical CWI Verdict Engine
+  copied VERBATIM (pinned blob, never edited; weights, thresholds, and gates
+  are spec-versioned). The test suite asserts the vendored file's sha256.
+
+## Run it
+
+Requires Python 3.8+, stdlib only — no pip install, no network, no accounts.
+
+    git clone https://github.com/CumulativeWebInc/cwi-verdict-cli.git
+    cd cwi-verdict-cli
+    python3 -m verdict_cli example > evidence.json
+    python3 -m verdict_cli score evidence.json --out ./run-001
+
+Commands: score, check (one-line pipeline verdict), example, spec (published
+scoring rules), pin (vendored engine provenance for audit).
+
+Cross-check: cwi-mcp-server's trust_verdict tool runs the byte-identical
+vendored engine v1.0.0 this CLI wraps.
+
+## Status & business
+
+- LIVE at https://cumulativewebinc.github.io/cwi-verdict-cli/ · 40/40 tests.
+- Built by Cumulative Web Inc. Proprietary — all rights reserved.
+- Store card #5 PENDING: licensing on request via hp@cumulativeweb.com.
+  No prices published without approval.
+
+Machine-readable: https://cumulativewebinc.github.io/cwi-verdict-cli/.well-known/agent-card.json
+Source: https://github.com/CumulativeWebInc/cwi-verdict-cli
