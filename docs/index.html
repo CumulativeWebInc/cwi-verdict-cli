@@ -3,7 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verdict CLI — deterministic trust scoring for AI agents</title>
+<title>Verdict CLI — deterministic trust scoring for AI agents | Cumulative Web Inc</title>
+<meta name="description" content="Verdict CLI: deterministic, evidence-bound trust scoring for AI agents — the CWI Verdict Engine v1.0.0 as runnable software. A verdict with receipts, or an honest insufficient-data. Never invents a score. Stdlib-only Python, $0, no network.">
+<meta property="og:title" content="Verdict CLI — deterministic trust scoring for AI agents">
+<meta property="og:description" content="Evidence in, verdict out — with a full evidence trace, or an honest insufficient-data refusal. The CWI Verdict Engine v1.0.0 as runnable software.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cumulativewebinc.github.io/cwi-verdict-cli/">
+<meta property="og:image" content="https://cumulativewebinc.github.io/cwi-verdict-cli/brand/logo.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Verdict CLI — deterministic trust scoring for AI agents">
+<meta name="twitter:description" content="A verdict with receipts, or an honest insufficient-data. It never invents a score.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Verdict CLI","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform (Python 3.8+, stdlib only)","url":"https://cumulativewebinc.github.io/cwi-verdict-cli/","image":"https://cumulativewebinc.github.io/cwi-verdict-cli/brand/logo.jpg","version":"1.0.0","description":"Deterministic, evidence-bound trust scoring for AI agents — the CWI Verdict Engine v1.0.0 as runnable software. Returns a scored verdict with a full evidence trace, or an honest refusal (insufficient-data, evidence-disputed, unknown-context, invalid-input). Never invents a score.","publisher":{"@type":"Organization","name":"Cumulative Web Inc","url":"https://cumulativeweb.com"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free to download and run; enterprise licensing on request"},"softwareRequirements":"Python 3.8+, no dependencies, no network, no accounts"}
+</script>
 <style>
 :root{--bg:#0b1622;--fg:#dfeaf2;--mut:#8fa9bc;--acc:#7ef0c1;--card:#101e2e}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
@@ -21,13 +33,33 @@ th,td{border:1px solid rgba(255,255,255,.12);padding:8px 10px;text-align:left}
 th{color:var(--acc)}.fine{color:var(--mut);font-size:.85rem}
 .badge{display:inline-block;background:#123;color:var(--acc);border:1px solid var(--acc);
 border-radius:20px;padding:2px 12px;font-size:.8rem;margin-right:8px}
+header.brand{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+header.brand img{width:64px;height:64px;border-radius:50%;border:2px solid var(--acc)}
+.cta{background:#0e241b;border:1px solid var(--acc);border-radius:12px;padding:18px 20px;margin:1rem 0}
+.btn{display:inline-block;background:var(--acc);color:#062015;font-weight:700;border-radius:10px;padding:11px 22px;text-decoration:none;margin:6px 8px 6px 0}
+.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+footer.cwi{margin-top:36px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);color:var(--mut);font-size:.85rem}
 </style>
 </head>
 <body>
 <div class="wrap">
-<p><span class="badge">v1.0.0</span><span class="badge">stdlib only</span><span class="badge">$0</span></p>
-<h1>Verdict CLI</h1>
+<header class="brand">
+<img src="brand/logo.jpg" alt="Cumulative Web Inc logo">
+<div>
+<p style="margin:0 0 4px"><span class="badge">v1.0.0</span><span class="badge">stdlib only</span><span class="badge">$0</span></p>
+<h1 style="font-size:2rem;margin:0 0 .2rem">Verdict CLI</h1>
+<p class="sub" style="margin-bottom:0">A Cumulative Web Inc trust-layer product</p>
+</div>
+</header>
 <p class="sub">Deterministic, evidence-bound trust scoring for AI agents — the CWI Verdict Engine v1.0.0 as runnable software. A verdict with receipts, or an honest <em>insufficient-data</em>. It never invents a score.</p>
+
+<div class="cta" id="try">
+<h2 style="margin-top:0;color:var(--acc)">Try it now — running in under 5 minutes</h2>
+<p>No install beyond Python 3.8+. Clone the repo, print a valid evidence template, and run your first score — no network, no accounts, your evidence never leaves your machine.</p>
+<p><a class="btn" href="https://github.com/CumulativeWebInc/cwi-verdict-cli">→ Get the code on GitHub</a>
+<a class="btn ghost" href="mailto:hp@cumulativeweb.com?subject=Verdict%20CLI%20licensing%20inquiry">License it: hp@cumulativeweb.com</a></p>
+<p class="fine">Prefer a live cross-check? <a href="https://github.com/CumulativeWebInc/cwi-mcp-server">cwi-mcp-server</a>'s <code>trust_verdict</code> tool runs the byte-identical vendored engine v1.0.0 this CLI wraps. Store-card licensing is PENDING — price on request, never published without approval.</p>
+</div>
 
 <div class="card">
 <h2 style="margin-top:0">What it does</h2>
@@ -81,6 +113,9 @@ python3 -m verdict_cli score evidence.json --out ./run-001
 
 <p class="fine">Built by <a href="https://cumulativeweb.com">Cumulative Web Inc</a>. Real software, never a simulation. 40/40 tests passing. Proprietary — all rights reserved.</p>
 </div>
+<footer class="cwi" style="margin-top:36px;padding:26px 20px;border-top:1px solid rgba(255,255,255,.12);color:var(--mut);font-size:.85rem;max-width:860px;margin-left:auto;margin-right:auto">
+<strong>© 2026 Cumulative Web Inc</strong> · <a href="https://cumulativeweb.com">cumulativeweb.com</a> · <a href="mailto:hp@cumulativeweb.com">hp@cumulativeweb.com</a> · engine v1.0.0 (vendored, pinned, never edited) · schema 1.0.0 · store card #5 PENDING — licensing on request, no prices published without approval.
+</footer>
 <section id="verify-yourself" style="border:1px solid #2a2f3a;border-radius:12px;padding:20px 22px;margin:28px auto;max-width:860px;background:rgba(255,255,255,.02)">
 <h2 style="margin:0 0 8px">Verify it yourself</h2>
 <p style="margin:0 0 12px;opacity:.85">Don't take our word for it — re-run the check from your own machine or your own agent runtime.</p>
